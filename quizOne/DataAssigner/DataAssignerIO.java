@@ -1,3 +1,4 @@
+package DataAssigner;
 
 /* 
 Write a Java program that will assign data to all the fields and then write the data out.
