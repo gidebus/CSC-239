@@ -1,17 +1,17 @@
 
-import java.text.*;
+import java.text.NumberFormat;
 
 public class Emprec implements Emprec_Iface {
-int phoneNum;
+String phoneNum;
 String name;
 String email;  
 boolean membership;
-String gender;
+char gender;
 String stylist;
 String services;
 
 
-public Emprec (int phoneNum, String name, String email, boolean membership,
+public Emprec (String phoneNum, String name, String email, boolean membership,
                  String gender, String stylist, String services)
 {
 
@@ -19,7 +19,7 @@ this.name=name;
 this.phoneNum=phoneNum;
 this.email=email;
 this.membership=membership;
-this.gender = gender;
+this.gender = gender.charAt(0);
 this.stylist=stylist;
 this.services=services;
 }
@@ -30,11 +30,11 @@ Emprec ( String phoneNum,String name, String email,String membership,
 {
 
 try {
-this.phoneNum=Integer.parseInt(phoneNum);
+this.phoneNum=phoneNum;
 this.name=name;
 this.email=email;
-this.membership=Boolean.valueOf(membership).booleanValue();
-this.gender=gender;
+this.membership=Boolean.parseBoolean(membership);
+this.gender=gender.charAt(0);
 this.stylist=stylist;
 this.services=services;
 
@@ -45,52 +45,51 @@ catch(NumberFormatException errmsg)
 {
 System.out.println("Invalid format"+ errmsg);
 
-  this.phoneNum = 0;
+  this.phoneNum = "";
   this.name  = "";  
   this.email =" ";
-  this.gender = " ";
+  this.gender = ' ';
   this.stylist= "";
   this.services = "";
-
 
 
 }//catch
 
 }//Emprec constructor !!!!
 
-public double calc_regular_cost()
+public double calcRegularCost()
 {
   double regular_cost = 0.00;
   
 // calulate cost for junior stylist
 if (stylist.equals("Junior") && services.equals("wash/blowdry"))
-regular_cost = junior_stylist_rate * Wash_And_Blowdry_cost;
+regular_cost = JuniorStylistRate * WashAndBlowdryCost;
 if (stylist.equals("Junior") && services.equals("Haircut"))
-regular_cost = junior_stylist_rate * haircut_cost;
+regular_cost = JuniorStylistRate * HaircutCost;
 if (stylist.equals("Junior") && services.equals("Coloring"))
-regular_cost = junior_stylist_rate * coloring_cost;
+regular_cost = JuniorStylistRate * ColoringCost;
 if (stylist.equals("Junior") && services.equals("Perming"))
-regular_cost = junior_stylist_rate * Perming_cost;
+regular_cost = JuniorStylistRate * PermingCost;
 
 //calculate cost for senior stylist
 if (stylist.equals("Senior") && services.equals("wash/blowdry"))
-regular_cost = senior_stylist_rate * Wash_And_Blowdry_cost;
+regular_cost = SeniorStylistRate * WashAndBlowdryCost;
 if (stylist.equals("Senior") && services.equals("Haircut"))
-regular_cost = senior_stylist_rate * haircut_cost;
+regular_cost = SeniorStylistRate * HaircutCost;
 if (stylist.equals("Senior") && services.equals("Coloring"))
-regular_cost = senior_stylist_rate * coloring_cost;
+regular_cost = SeniorStylistRate * ColoringCost;
 if (stylist.equals("Senior") && services.equals("Perming"))
-regular_cost = senior_stylist_rate * Perming_cost;
+regular_cost = SeniorStylistRate * PermingCost;
 
 //calculate cost for master stylist
 if (stylist.equals("Master") && services.equals("wash/blowdry"))
-regular_cost = master_stylist_rate * Wash_And_Blowdry_cost;
+regular_cost = MasterStylistRate * WashAndBlowdryCost;
 if (stylist.equals("Master") && services.equals("Haircut"))
-regular_cost = master_stylist_rate * haircut_cost;
+regular_cost = MasterStylistRate * HaircutCost;
 if (stylist.equals("Master") && services.equals("Coloring"))
-regular_cost = master_stylist_rate * coloring_cost;
+regular_cost = MasterStylistRate * ColoringCost;
 if (stylist.equals("Master") && services.equals("Perming"))
-regular_cost = master_stylist_rate * Perming_cost;
+regular_cost = MasterStylistRate * PermingCost;
 
 
 return  (regular_cost);
@@ -98,26 +97,26 @@ return  (regular_cost);
 }// calc_regular_cost
 
 
-public double calc_vip_cost ()
+public double calcVIPCost ()
 {
 
-double vip_cost = calc_regular_cost()* vip_discount;
+double vip_cost = calcRegularCost()* VIPDiscount;
 
 return (vip_cost);
 
 }// calc_vip_cost
 
-public double calc_hour_needed() {
+public double calcHourNeeded() {
 double hour_needed = 0.0;
 
 if (services.equals("wash/blowdry"))
-hour_needed = Wash_And_Blowdry_hour;
+hour_needed = WashAndBlowdryHour;
 if (services.equals("Haircut"))
-hour_needed = haircut_hour;
+hour_needed = HaircutHour;
 if (services.equals("Coloring"))
-hour_needed = coloring_hour;
+hour_needed = ColoringHour;
 if (services.equals("Curling"))
-hour_needed = curling_hour;
+hour_needed = CurlingHour;
 
 return (hour_needed);
 } // calc_hour_needed
@@ -136,9 +135,9 @@ return
             "\n Stylist Gender:\t\t"+ gender +
             "\n Stylist Level:\t\t" + stylist +
             "\n Service:\t\t" + services +
-            "\n Regular Cost:\t\t"+ fmt.format(calc_regular_cost()) +
-            "\n VIP Cost:\t\t"+ fmt.format(calc_vip_cost()) +
-            "\n Hours Required:\t\t"+ calc_hour_needed()
+            "\n Regular Cost:\t\t"+ fmt.format(calcRegularCost()) +
+            "\n VIP Cost:\t\t"+ fmt.format(calcVIPCost()) +
+            "\n Hours Required:\t\t"+ calcHourNeeded()
             
         );
 

@@ -122,7 +122,7 @@ else
 
 public void readRecord()
 {
-int phoneNum;
+String phoneNum;
 String name;
 String email;
 boolean membership;
@@ -132,7 +132,7 @@ String services;
 
 // input the values from the file
 try {
-   phoneNum = input.readInt();
+   phoneNum = input.readUTF();
    name = input.readUTF();
    email = input.readUTF();
    membership = input.readBoolean();
@@ -149,7 +149,7 @@ try {
     }
    
 
-    Customer =new Emprec(phoneNum, name, email, membership,gender,stylist,services);
+    Customer= new Emprec(phoneNum, name, email, membership,gender,stylist,services);
 
 
   System.out.println(Customer ); //toString()
@@ -166,9 +166,9 @@ try {
    StylistField.setText(stylist );
    ServicesField.setText(services);
    
-   RegularCostField.setText( String.valueOf( fmt.format(Customer.calc_regular_cost()))); //format text
-   VipCostField.setText( String.valueOf( fmt.format(Customer.calc_vip_cost()))); //format text
-   HoursField.setText( String.valueOf( Customer.calc_hour_needed())); 
+   RegularCostField.setText( String.valueOf( fmt.format(Customer.calcRegularCost()))); //format text
+   VipCostField.setText( String.valueOf( fmt.format(Customer.calcVIPCost()))); //format text
+   HoursField.setText( String.valueOf( Customer.calcHourNeeded())); 
 
 }
 catch ( EOFException eof ) {
