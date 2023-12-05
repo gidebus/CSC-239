@@ -47,7 +47,7 @@ System.out.println("Invalid format"+ errmsg);
 
   this.phoneNum = "";
   this.name  = "";  
-  this.email =" ";
+  this.email ="";
   this.gender = ' ';
   this.stylist= "";
   this.services = "";

@@ -47,8 +47,6 @@ int x = (((screenSize.width - this.getWidth()) / 1) / 2);
 int y = (((screenSize.height - this.getHeight()) / 2) / 2);
 this.setLocation(x, y);
 
-
-
 // create the components of the Frame
 add( new Label( " Phone Number" ) );
 PhoneNumField = new TextField( 20 );

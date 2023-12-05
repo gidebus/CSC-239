@@ -128,52 +128,41 @@
 	      String StylistTemp;
 	      String ServicesTemp;
 
-	         if ( ! PhoneNumField.getText().equals( "" ) ) {
-
+	         if (!PhoneNumField.getText().equals( "" )) {
 	            // output the values to the file
-	            try {
-	            	PhoneNum = Integer.parseInt( PhoneNumField.getText());
+			try {
+				PhoneNum = Integer.parseInt( PhoneNumField.getText());
 
-	               if ( PhoneNum > 0 ) {
-	                  output.writeInt( PhoneNum );
-	                  output.writeUTF( NameField.getText() );
-	                  output.writeUTF( EmailField.getText() );
-	               
-	               MemberTemp = Boolean.parseBoolean(MembershipField.getText());
-		           output.writeBoolean( MemberTemp );
-		           
-		           genderTemp = GenderField.getSelectedItem(); //get string
-		           output.writeUTF( genderTemp ); //change to write UTF
-	             
-		           StylistTemp = StylistField.getSelectedItem(); //get string
-	               output.writeUTF(  StylistTemp ); //change to write UTF
-	               
-	               ServicesTemp = ServicesFiled.getSelectedItem(); //get string
-	               output.writeUTF(  ServicesTemp ); //change to write UTF
-		           
-		          
+			   if ( PhoneNum > 0 ) {
 
-	            // clear the TextFields
-		        PhoneNumField.setText( "" );
-	            NameField.setText( "" );
-	            EmailField.setText( "" );
-	            MembershipField.setText("");
-	            GenderField.select(0); 
-	            StylistField.select(0);
-	            ServicesFiled.select(0);
-	        
-	               }
-	            }
-	          
-	            catch ( NumberFormatException nfe ) {
-	                System.err.println(
-	                   "You must enter an integer phone number" );
-	             }
-	      
+				   MemberTemp = Boolean.parseBoolean(MembershipField.getText());
+				   genderTemp = GenderField.getSelectedItem(); //get string
+				   StylistTemp = StylistField.getSelectedItem(); //get string
+				   ServicesTemp = ServicesFiled.getSelectedItem(); //get string
+
+				   output.writeInt( PhoneNum );
+				   output.writeUTF( NameField.getText() );
+				   output.writeUTF( EmailField.getText() );
+				   output.writeBoolean( MemberTemp );
+				   output.writeUTF( genderTemp ); //change to write UTF
+				   output.writeUTF(  StylistTemp ); //change to write UTF
+				   output.writeUTF(  ServicesTemp ); //change to write UTF
+					// clear the TextFields
+					PhoneNumField.setText( "" );
+					NameField.setText( "" );
+					EmailField.setText( "" );
+					MembershipField.setText("");
+					GenderField.select(0);
+					StylistField.select(0);
+					ServicesFiled.select(0);
+
+			   }
+			}
+			catch ( NumberFormatException nfe ) {
+				System.err.println("You must enter an integer phone number" );
+			 }
 	         catch ( IOException io ) {
-	            System.err.println(
-	               "Error during write to file\n" +
-	               io.toString() );
+	            System.err.println("Error during write to file\n" + io.toString() );
 	            System.exit( 1 );
 	         }
 	      }
